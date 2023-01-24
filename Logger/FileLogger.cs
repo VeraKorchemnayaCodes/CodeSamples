@@ -3,7 +3,7 @@ using System.IO;
 
 namespace Logger;
 
-internal class FileLogger : BaseLogger
+public class FileLogger : BaseLogger
 {
     private string _filePath;
 
