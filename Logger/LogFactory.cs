@@ -9,10 +9,10 @@ public class LogFactory
         _filePath = filePath;
     }
 
-    public BaseLogger CreateLogger(string className)
+    public BaseLogger? CreateLogger(string className)
     {
         if (string.IsNullOrEmpty(_filePath))
-            return null!;
+            return null;
         return new FileLogger(_filePath) { ClassName = className };
     }
 }
