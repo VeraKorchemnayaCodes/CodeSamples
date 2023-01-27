@@ -7,6 +7,16 @@ namespace Logger.Tests;
 public class FileLoggerTests
 {
     [TestMethod]
+    public void FileLogger_GivenFilePath_Success()
+    {
+        // Arrange
+        string filePath = Path.GetTempFileName();
+
+        // Act
+        FileLogger logger = new FileLogger(filePath);
+    }
+
+    [TestMethod]
     public void Log_WritesMessageToFile()
     {
         // Arrange

@@ -34,4 +34,19 @@ public class LogFactoryTests
         // Assert
         Assert.IsNotNull(logger);
     }
+
+    [TestMethod]
+    [DataRow(nameof(LogFactoryTests))]
+    public void CreateLogger_GivenClassName_SetsClassName(string className)
+    {
+        // Arrange
+        LogFactory factory = new();
+        factory.ConfigureFileLogger(Path.GetTempFileName());
+
+        // Act
+        BaseLogger? logger = factory.CreateLogger(className);
+
+        // Assert
+        Assert.AreEqual(logger!.ClassName, className);
+    }
 }
