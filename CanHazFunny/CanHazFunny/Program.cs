@@ -1,10 +1,18 @@
-﻿namespace CanHazFunny
+﻿using System;
+
+namespace CanHazFunny
 {
     class Program
     {
         static void Main(string[] args)
         {
-            new Jester(new JokeOutput(), new JokeService()).TellJoke();
+            JokeOutput jokeOutput = new();
+            JokeService jokeService = new();
+            Jester jester = new(jokeOutput, jokeService);
+            do
+            {
+                jester.TellJoke();
+            } while (Console.ReadLine().Contains("more"));
         }
     }
 }
