@@ -2,6 +2,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using Moq;
 using Microsoft.VisualStudio.TestPlatform.Utilities;
+using System.IO;
 
 namespace CanHazFunny.Tests
 {
@@ -12,8 +13,8 @@ namespace CanHazFunny.Tests
         [ExpectedException(typeof(System.ArgumentNullException))]
         public void Constructor_GivenNullIJokeOutput_Throws()
         {
-            IJokeService service = new Mock<IJokeService>().Object;
-            new Jester(null, service);
+            Mock<IJokeService> service = new Mock<IJokeService>();
+            new Jester(null, service.Object);
         }
 
         [TestMethod]
@@ -43,13 +44,6 @@ namespace CanHazFunny.Tests
 
             Assert.AreEqual<string>(joke, mockService.Object.GetJoke());
         }
-
-
-
-
-
-
-
 
 
         [TestMethod]
@@ -102,6 +96,23 @@ namespace CanHazFunny.Tests
             mockJokeOutput.Verify(x => x.WriteJoke("Chuck Norris doesn't do push ups. He pushes the earth down."), Times.Never);
             mockJokeOutput.Verify(x => x.WriteJoke("Why did the tomato turn red? Because it saw the salad dressing!"), Times.Once);
         }
+
+        [TestMethod]
+        public void WriteJoke_OutputsJokeToConsole()
+        {
+            // Arrange
+            string joke = "Why did the scarecrow win an award? Because he was outstanding in his field!";
+            JokeOutput jokeOutput = new();
+            StringWriter consoleOutput = new();
+            Console.SetOut(consoleOutput);
+
+            // Act
+            jokeOutput.WriteJoke(joke);
+
+            // Assert
+            Assert.AreEqual(joke + Environment.NewLine, consoleOutput.ToString());
+        }
+
 
     }
 }
