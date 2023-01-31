@@ -6,25 +6,24 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CanHazFunny.Tests
+namespace CanHazFunny.Tests;
+
+[TestClass]
+public class JokeOutputTests
 {
-    [TestClass]
-    internal class JokeOutputTests
+    [TestMethod]
+    public void WriteJoke_OutputsJokeToConsole()
     {
-        [TestMethod]
-        public void WriteJoke_OutputsJokeToConsole()
-        {
-            // Arrange
-            string joke = "Why did the scarecrow win an award? Because he was outstanding in his field!";
-            JokeOutput jokeOutput = new();
-            StringWriter consoleOutput = new();
-            Console.SetOut(consoleOutput);
+        // Arrange
+        string joke = "Why did the scarecrow win an award? Because he was outstanding in his field!";
+        JokeOutput jokeOutput = new();
+        StringWriter consoleOutput = new();
+        Console.SetOut(consoleOutput);
 
-            // Act
-            jokeOutput.WriteJoke(joke);
+        // Act
+        jokeOutput.WriteJoke(joke);
 
-            // Assert
-            Assert.AreEqual(joke + Environment.NewLine, consoleOutput.ToString());
-        }
+        // Assert
+        Assert.AreEqual(joke + Environment.NewLine, consoleOutput.ToString());
     }
 }

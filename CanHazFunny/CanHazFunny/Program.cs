@@ -1,18 +1,17 @@
 ﻿using System;
 
-namespace CanHazFunny
+namespace CanHazFunny;
+
+class Program
 {
-    class Program
+    static void Main(string[] args)
     {
-        static void Main(string[] args)
+        JokeOutput jokeOutput = new();
+        JokeService jokeService = new();
+        Jester jester = new(jokeOutput, jokeService);
+        do
         {
-            JokeOutput jokeOutput = new();
-            JokeService jokeService = new();
-            Jester jester = new(jokeOutput, jokeService);
-            do
-            {
-                jester.TellJoke();
-            } while (Console.ReadLine().Contains("more"));
-        }
+            jester.TellJoke();
+        } while (Console.ReadLine().Contains("more"));
     }
 }
