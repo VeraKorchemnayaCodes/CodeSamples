@@ -91,14 +91,16 @@ namespace CanHazFunny.Tests
             Mock<IJokeOutput> mockJokeOutput = new Mock<IJokeOutput>();
             Mock<IJokeService> mockJokeService = new Mock<IJokeService>();
             Jester jester = new Jester(mockJokeOutput.Object, mockJokeService.Object);
-            mockJokeService.Setup(x => x.GetJoke()).Returns("Chuck Norris doesn't do push ups. He pushes the earth down.")
-                ;
+            mockJokeService.SetupSequence(x => x.GetJoke())
+                .Returns("Chuck Norris doesn't do push ups. He pushes the earth down.")
+                .Returns("Why did the tomato turn red? Because it saw the salad dressing!");
 
             // Act
             jester.TellJoke();
 
             // Assert
             mockJokeOutput.Verify(x => x.WriteJoke("Chuck Norris doesn't do push ups. He pushes the earth down."), Times.Never);
+            mockJokeOutput.Verify(x => x.WriteJoke("Why did the tomato turn red? Because it saw the salad dressing!"), Times.Once);
         }
 
     }
