@@ -27,8 +27,8 @@ namespace CanHazFunny.Tests
         [TestMethod]
         public void Constructor_GivenIJokeOutputAndIJokeService_Success()
         {
-            IJokeService service = new Mock<IJokeService>().Object;
             IJokeOutput output = new Mock<IJokeOutput>().Object;
+            IJokeService service = new Mock<IJokeService>().Object;
             new Jester(output, service);
         }
 
@@ -36,10 +36,69 @@ namespace CanHazFunny.Tests
         [TestMethod]
         public void TellJoke_Called_ReturnsJoke()
         {
-            string tmp = "joke";
-            Mock<IJokeService> mock = new Mock<IJokeService>();
-            mock.Setup(JokeService => JokeService.GetJoke()).Returns("joke");
-            Assert.AreEqual<string>(tmp, mock.Object.GetJoke());
+            
+            string joke = "Beware of programmers that carry screwdrivers.";
+            Mock<IJokeService> mockService = new Mock<IJokeService>();
+            mockService.Setup(service => service.GetJoke()).Returns(joke);
+
+            Assert.AreEqual<string>(joke, mockService.Object.GetJoke());
+        }
+
+
+
+
+
+
+
+
+
+        [TestMethod]
+        public void TellJoke_CallsGetJoke()
+        {
+            // Arrange
+            Mock<IJokeOutput> mockJokeOutput = new();
+            Mock<IJokeService> mockJokeService = new();
+            Jester jester = new(mockJokeOutput.Object, mockJokeService.Object);
+            mockJokeService.Setup(x => x.GetJoke()).Returns("");
+
+            // Act
+            jester.TellJoke();
+
+            // Assert
+            mockJokeService.Verify(x => x.GetJoke(), Times.Once);
+        }
+
+        [TestMethod]
+        public void TellJoke_CallsWriteLine()
+        {
+            // Arrange
+            Mock<IJokeOutput> mockJokeOutput = new Mock<IJokeOutput>();
+            Mock<IJokeService> mockJokeService = new Mock<IJokeService>();
+            Jester jester = new Jester(mockJokeOutput.Object, mockJokeService.Object);
+            mockJokeService.Setup(x => x.GetJoke()).Returns("Why did the tomato turn red? Because it saw the salad dressing!");
+
+            // Act
+            jester.TellJoke();
+
+            // Assert
+            mockJokeOutput.Verify(x => x.WriteJoke("Why did the tomato turn red? Because it saw the salad dressing!"), Times.Once);
+        }
+
+        [TestMethod]
+        public void TellJoke_FiltersChuckNorrisJokes()
+        {
+            // Arrange
+            Mock<IJokeOutput> mockJokeOutput = new Mock<IJokeOutput>();
+            Mock<IJokeService> mockJokeService = new Mock<IJokeService>();
+            Jester jester = new Jester(mockJokeOutput.Object, mockJokeService.Object);
+            mockJokeService.Setup(x => x.GetJoke()).Returns("Chuck Norris doesn't do push ups. He pushes the earth down.")
+                ;
+
+            // Act
+            jester.TellJoke();
+
+            // Assert
+            mockJokeOutput.Verify(x => x.WriteJoke("Chuck Norris doesn't do push ups. He pushes the earth down."), Times.Never);
         }
 
     }
