@@ -15,7 +15,7 @@ public class JokeOutputTests
     public void WriteJoke_OutputsJokeToConsole()
     {
         // Arrange
-        string joke = "Why did the scarecrow win an award? Because he was outstanding in his field!";
+        string joke = "The pen is mighter than the sword, but only if the pen is held by Chuck Norris.";
         JokeOutput jokeOutput = new();
         StringWriter consoleOutput = new();
         Console.SetOut(consoleOutput);

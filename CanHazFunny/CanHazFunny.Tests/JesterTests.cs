@@ -66,13 +66,13 @@ public class JesterTests
         Mock<IJokeOutput> mockJokeOutput = new Mock<IJokeOutput>();
         Mock<IJokeService> mockJokeService = new Mock<IJokeService>();
         Jester jester = new Jester(mockJokeOutput.Object, mockJokeService.Object);
-        mockJokeService.Setup(x => x.GetJoke()).Returns("Why did the tomato turn red? Because it saw the salad dressing!");
+        mockJokeService.Setup(x => x.GetJoke()).Returns("3 Database SQL walked into a NoSQL bar. A little while later they walked out, because they couldn't find a table.");
 
         // Act
         jester.TellJoke();
 
         // Assert
-        mockJokeOutput.Verify(x => x.WriteJoke("Why did the tomato turn red? Because it saw the salad dressing!"), Times.Once);
+        mockJokeOutput.Verify(x => x.WriteJoke("3 Database SQL walked into a NoSQL bar. A little while later they walked out, because they couldn't find a table."), Times.Once);
     }
 
     [TestMethod]
@@ -83,14 +83,14 @@ public class JesterTests
         Mock<IJokeService> mockJokeService = new Mock<IJokeService>();
         Jester jester = new Jester(mockJokeOutput.Object, mockJokeService.Object);
         mockJokeService.SetupSequence(x => x.GetJoke())
-            .Returns("Chuck Norris doesn't do push ups. He pushes the earth down.")
-            .Returns("Why did the tomato turn red? Because it saw the salad dressing!");
+            .Returns("Chuck Norris once shot down a German fighter plane with his finger. By yelling 'Bang!")
+            .Returns("3 Database SQL walked into a NoSQL bar. A little while later they walked out, because they couldn't find a table.");
 
         // Act
         jester.TellJoke();
 
         // Assert
-        mockJokeOutput.Verify(x => x.WriteJoke("Chuck Norris doesn't do push ups. He pushes the earth down."), Times.Never);
-        mockJokeOutput.Verify(x => x.WriteJoke("Why did the tomato turn red? Because it saw the salad dressing!"), Times.Once);
+        mockJokeOutput.Verify(x => x.WriteJoke("Chuck Norris once shot down a German fighter plane with his finger. By yelling 'Bang!"), Times.Never);
+        mockJokeOutput.Verify(x => x.WriteJoke("3 Database SQL walked into a NoSQL bar. A little while later they walked out, because they couldn't find a table."), Times.Once);
     }
 }
