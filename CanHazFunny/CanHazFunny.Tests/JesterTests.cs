@@ -76,7 +76,7 @@ public class JesterTests
     }
 
     [TestMethod]
-    public void TellJoke_FiltersChuckNorrisJokes()
+    public void TellJoke_GivenChuckNorrisJoke_FiltersJoke()
     {
         // Arrange
         Mock<IJokeOutput> mockJokeOutput = new Mock<IJokeOutput>();
@@ -91,6 +91,25 @@ public class JesterTests
 
         // Assert
         mockJokeOutput.Verify(x => x.WriteJoke("Chuck Norris once shot down a German fighter plane with his finger. By yelling 'Bang!"), Times.Never);
+        mockJokeOutput.Verify(x => x.WriteJoke("3 Database SQL walked into a NoSQL bar. A little while later they walked out, because they couldn't find a table."), Times.Once);
+    }
+
+    [TestMethod]
+    public void TellJoke_GivenLowerCaseChuckNorrisJoke_FiltersJoke()
+    {
+        // Arrange
+        Mock<IJokeOutput> mockJokeOutput = new Mock<IJokeOutput>();
+        Mock<IJokeService> mockJokeService = new Mock<IJokeService>();
+        Jester jester = new Jester(mockJokeOutput.Object, mockJokeService.Object);
+        mockJokeService.SetupSequence(x => x.GetJoke())
+            .Returns("chuck norris once shot down a German fighter plane with his finger. By yelling 'Bang!")
+            .Returns("3 Database SQL walked into a NoSQL bar. A little while later they walked out, because they couldn't find a table.");
+
+        // Act
+        jester.TellJoke();
+
+        // Assert
+        mockJokeOutput.Verify(x => x.WriteJoke("chuck norris once shot down a German fighter plane with his finger. By yelling 'Bang!"), Times.Never);
         mockJokeOutput.Verify(x => x.WriteJoke("3 Database SQL walked into a NoSQL bar. A little while later they walked out, because they couldn't find a table."), Times.Once);
     }
 }
