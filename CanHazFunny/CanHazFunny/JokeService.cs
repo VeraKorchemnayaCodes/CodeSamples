@@ -3,7 +3,7 @@ using System.Text.Json;
 
 namespace CanHazFunny;
 
-#pragma warning disable IDE1006 // Surpressing naming rule violation because the parameter name must match the json key
+#pragma warning disable IDE1006 // Suppressing naming rule violation because the parameter name must match the json key
 public readonly record struct JokeJson(string joke);
 #pragma warning restore IDE1006
 
