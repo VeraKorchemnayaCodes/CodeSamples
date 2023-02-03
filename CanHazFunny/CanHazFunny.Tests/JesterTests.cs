@@ -96,7 +96,7 @@ public class JesterTests
     }
 
     [TestMethod]
-    public void TellJoke_FiltersChuckNorrisJokes_CaseInsensitive ()
+    public void TellJoke_FiltersChuckNorrisJokes_CaseInsensitive()
     {
         // Arrange
         Jester jester = new Jester(MockJokeOutput.Object, MockJokeService.Object);
