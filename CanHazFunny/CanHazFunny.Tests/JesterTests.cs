@@ -79,7 +79,7 @@ public class JesterTests
     }
 
     [TestMethod]
-    public void TellJoke_FiltersChuckNorrisJokes()
+    public void TellJoke_GivenChuckNorrisJoke_FiltersJoke()
     {
         // Arrange
         Jester jester = new Jester(MockJokeOutput.Object, MockJokeService.Object);
