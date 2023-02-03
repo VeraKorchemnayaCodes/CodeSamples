@@ -1,7 +1,4 @@
-using Microsoft.VisualStudio.TestPlatform.CommunicationUtilities.EventHandlers;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
-using System.Security.Cryptography.X509Certificates;
 
 namespace CanHazFunny.Tests;
 
