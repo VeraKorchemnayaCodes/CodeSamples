@@ -17,8 +17,7 @@ public readonly record struct FullName(string First, string Last, string? Middle
 
     public override string ToString()
     {
-        if (Middle is null)
-            return $"{First} {Last}";
-        return $"{First} {Middle} {Last}";
+        if (Middle is null) return $"{First} {Last}";
+        else return $"{First} {Middle} {Last}";
     }
 }

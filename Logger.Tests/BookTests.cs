@@ -4,35 +4,28 @@ namespace Logger.Tests;
 [TestClass]
 public class BookTests
 {
+    private readonly FullName author = new("Jordan", "Peterson");
+
     [TestMethod]
     [ExpectedException(typeof(ArgumentNullException))]
     public void Book_GivenNullTitle_ThrowsExpected()
     {
-        _ = new Book(null!, "Jordan Peterson", "ISBN 978-321");
-    }
-
-    [TestMethod]
-    [ExpectedException(typeof(ArgumentNullException))]
-    public void Book_GivenNullAuthor_ThrowsExpected()
-    {
-        _ = new Book("Beyond Order", null!, "ISBN 978-321");
+        _ = new Book(null!, author, "ISBN 978-321");
     }
 
     [TestMethod]
     [ExpectedException(typeof(ArgumentNullException))]
     public void Book_GivenNullISBN_ThrowsExpected()
     {
-        _ = new Book("Beyond Order", "Jordan Peterson", null!);
+        _ = new Book("Beyond Order", author, null!);
     }
 
     [TestMethod]
     public void IsEqual_DifferentInstancesIdenticalISBN_ReturnsTrue()
     {
         // Arrange
-        Book book1 = new("Beyond", "Jordan ", "ISBN 978-321");
-        Book book2 = new("Beyond Order", "Jordan Peterson", "ISBN 978-321");
-
-        // Act
+        Book book1 = new("Beyond", author, "ISBN 978-321");
+        Book book2 = new("Beyond Order", author, "ISBN 978-321");
 
         // Assert
         Assert.IsTrue(book1.Equals(book2));
@@ -42,10 +35,8 @@ public class BookTests
     public void IsEqual_DifferentISBN_ReturnsFalse()
     {
         // Arrange
-        Book book1 = new("Beyond", "Jordan ", "ISBN 978-32");
-        Book book2 = new("Beyond Order", "Jordan Peterson", "ISBN 978-321");
-
-        // Act
+        Book book1 = new("Beyond Order", author, "ISBN 978-32");
+        Book book2 = new("Beyond Order", author, "ISBN 978-321");
 
         // Assert
         Assert.IsFalse(book1.Equals(book2));
@@ -56,7 +47,6 @@ public class BookTests
     {
         // Arrange
         string title = "Beyond Order";
-        string author = "Jordan Peterson";
         string isbn = "ISBN 978-321";
 
         Book book = new(title, author, isbn);
@@ -65,6 +55,6 @@ public class BookTests
         string expected = $"{title} by {author} ({isbn})";
 
         // Assert
-        Assert.AreEqual(expected, book.Name);
+        Assert.AreEqual<string>(expected, book.Name);
     }
 }
