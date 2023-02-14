@@ -1,4 +1,5 @@
-﻿namespace GenericsHomework;
+﻿using System;
+namespace GenericsHomework;
 
 public class Node<T> where T : struct
 {
@@ -24,20 +25,21 @@ public class Node<T> where T : struct
         Next = newNode;
     }
 
+    /*
+     * Setting next to itself is sufficient because there is no longer a root reference to the deleted nodes.
+     * It's irrelevant whether or not the deleted nodes point to each other because they're no longer accessible by the code. 
+     * The garbage collector wont be able to find any pointers to the deleted nodes, making it sufficient.
+     */
+
     public void Clear()
     {
         Next = this;
     }
 
-    /*
-     * Setting next to itself is sufficient because there is no longer a root reference to the deleted nodes.
-     * It's irrelevant whether or not the deleted nodes point to eachother because they're no longer accessible by the code. 
-     * The garbage collector wont be able to find any pointers to the deleted nodes, making it sufficient.
-     */
-
     public bool Exists(T value)
     {
-        Node<T> currentNode = this.Next;
+        if (Value.Equals(value)) return true;
+        Node<T> currentNode = Next;
         while (currentNode != this)
         {
             if (currentNode.Value.Equals(value))
@@ -47,5 +49,5 @@ public class Node<T> where T : struct
         return false;
     }
 
-    public override string ToString() => Value.ToString() ?? "null";
+    public override string ToString() => Value.ToString() ?? "what were you thinking!!";
 }
