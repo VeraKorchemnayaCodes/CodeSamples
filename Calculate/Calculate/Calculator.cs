@@ -12,54 +12,55 @@ public class Calculator
                 ['/'] = Divide
             };
 
-    public static int Add(int parameter1, int parameter2)
-    {
-        return 0;
-    }
-    public static int Subtract(int parameter1, int parameter2)
-    {
-        return 0;
-    }
+    public static int Add(int parameter1, int parameter2) => parameter1 + parameter2;
+    public static int Subtract(int parameter1, int parameter2) => parameter1 - parameter2;
 
-    public static int Multiple(int parameter1, int parameter2)
-    {
-        return 0;
-    }
+    public static int Multiple(int parameter1, int parameter2) => parameter1 * parameter2;
 
     public static int Divide(int parameter1, int parameter2)
     {
-        return 0;
+            if (parameter2 is 0) throw new DivideByZeroException();
+            return parameter1 / parameter2;
     }
 
-    public bool TryCalculate(string calculation)
+    public bool TryCalculate(string calculation, out int result)
     {
-        Dictionary<char, Func<int, int, int>>.KeyCollection keyColl =
-            (Dictionary<char, Func<int, int, int>>.KeyCollection)MathematicalOperations.Keys;
+        result = -1;
+        string[] calculationArray = calculation.Split(" ");
 
-        foreach (char s in keyColl)
+        if (calculationArray.Length != 3) return false;
+
+        int a;
+        int b;
+
+        if (int.TryParse(calculationArray[0], out a) 
+            && int.TryParse(calculationArray[2], out b))
         {
-            if (calculation.Contains(s))
+            if (MathematicalOperations.ContainsKey(calculationArray[1].First()))
             {
-                string[] calcs = calculation.Split($" {s} ");
+                result = MathematicalOperations[calculationArray[1].First()](a, b);
+            }
 
-                if (calcs.Length is 2)
-                {
-                    return true;
-                }
-            }
-            else
-            {
-                return false;
-            }
         }
 
+        //Dictionary<char, Func<int, int, int>>.KeyCollection keyColl =
+        //    (Dictionary<char, Func<int, int, int>>.KeyCollection)MathematicalOperations.Keys;
 
-        
-
-        //int[] calc = new int[2] { TryParse(calculation.Split(" ")) };
-        //if (calculation.Split(" ") is [int operand1, int operand2])
+        //foreach (char s in keyColl)
         //{
+        //    if (calculation.Contains(s))
+        //    {
+        //        string[] calcs = calculation.Split($" {s} ");
+        //        int[] intcalcs = new int[2] ;
+        //        int.TryParse(calcs[0], out intcalcs[0]);
+        //        int.TryParse(calcs[1], out intcalcs[1]);
+
+        //        result = MathematicalOperations[s](intcalcs[0], intcalcs[1]);
+        //        return true;
+        //    }
         //}
+
+        //result = -1;
         return false;
     }
 }
