@@ -25,42 +25,24 @@ public class Calculator
 
     public bool TryCalculate(string calculation, out int result)
     {
+        // Can still be refactored
         result = -1;
         string[] calculationArray = calculation.Split(" ");
 
         if (calculationArray.Length != 3) return false;
 
-        int a;
-        int b;
+        char key = calculationArray[1].First();
 
-        if (int.TryParse(calculationArray[0], out a) 
-            && int.TryParse(calculationArray[2], out b))
+        if (int.TryParse(calculationArray[0], out int a) 
+            && int.TryParse(calculationArray[2], out int b))
         {
-            if (MathematicalOperations.ContainsKey(calculationArray[1].First()))
+            if (MathematicalOperations.ContainsKey(key))
             {
-                result = MathematicalOperations[calculationArray[1].First()](a, b);
+                result = MathematicalOperations[key](a, b);
             }
 
         }
 
-        //Dictionary<char, Func<int, int, int>>.KeyCollection keyColl =
-        //    (Dictionary<char, Func<int, int, int>>.KeyCollection)MathematicalOperations.Keys;
-
-        //foreach (char s in keyColl)
-        //{
-        //    if (calculation.Contains(s))
-        //    {
-        //        string[] calcs = calculation.Split($" {s} ");
-        //        int[] intcalcs = new int[2] ;
-        //        int.TryParse(calcs[0], out intcalcs[0]);
-        //        int.TryParse(calcs[1], out intcalcs[1]);
-
-        //        result = MathematicalOperations[s](intcalcs[0], intcalcs[1]);
-        //        return true;
-        //    }
-        //}
-
-        //result = -1;
         return false;
     }
 }
