@@ -10,9 +10,8 @@ namespace CalculateTests
         [TestMethod]
         public void TryCalculate_CanParseStringWithValidOperator_Success()
         {
-            Calculator calculator = new Calculator();
-            int result;
-                calculator.TryCalculate("4 + 6", out result);
+            Calculator calculator = new();
+            calculator.TryCalculate("4 + 6", out int result);
             Assert.AreEqual<int>(10, result);
         }
         
@@ -22,14 +21,13 @@ namespace CalculateTests
         [DataRow("10 + 5", 15)]
         [DataRow("4 * 5", 20)]
         [DataRow("30 / 5", 6)]
+        [DataRow("2 / 0", 0)]
 
         public void TryCalculate_Calculations_Success(string calculation, int expected)
         {
-            Calculator calculator = new Calculator();
-            int result;
-                calculator.TryCalculate(calculation, out result);
+            Calculator calculator = new();
+            calculator.TryCalculate(calculation, out int result);
             Assert.AreEqual<int>(expected, result);
         }
-
     }
 }
