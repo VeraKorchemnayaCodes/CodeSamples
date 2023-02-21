@@ -1,4 +1,7 @@
-﻿namespace CalculateTests;
+﻿using System.Collections.Generic;
+using System.Linq;
+
+namespace CalculateTests;
 
 [TestClass]
 public class ProgramTests

@@ -1,7 +1,3 @@
-using Calculate;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System.Runtime.CompilerServices;
-
 namespace CalculateTests
 {
     [TestClass]
@@ -22,7 +18,6 @@ namespace CalculateTests
         [DataRow("4 * 5", 20)]
         [DataRow("30 / 5", 6)]
         [DataRow("2 / 0", 0)]
-
         public void TryCalculate_Calculations_Success(string calculation, int expected)
         {
             Calculator calculator = new();

@@ -1,4 +1,7 @@
-﻿namespace Calculate;
+﻿using System;
+using System.Collections.Generic;
+
+namespace Calculate;
 
 public class Calculator
 {

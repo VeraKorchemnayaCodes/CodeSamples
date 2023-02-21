@@ -1,4 +1,6 @@
-﻿namespace Calculate;
+﻿using System;
+
+namespace Calculate;
 
 public class Program
 {
@@ -19,7 +21,7 @@ public class Program
         Calculator calc = new();
         Program prog = new();
         bool running = true;
-        prog.WriteLine("Calculator at your service! (int <operator> int) format only!\nEnter \"quit\" to exit the program.");
+        prog.WriteLine("Calculator at your service! [<int> <operator> <int>] format only!\nEnter \"quit\" to exit the program.");
         while (running)
         {
             prog.WriteLine("Enter expression:");
