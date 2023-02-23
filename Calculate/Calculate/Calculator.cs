@@ -5,8 +5,8 @@ namespace Calculate;
 
 public class Calculator
 {
-    public IReadOnlyDictionary<char, Func<int, int, int>> MathematicalOperations { get; } =
-        new Dictionary<char, Func<int, int, int>>()
+    public IReadOnlyDictionary<char, Func<int, int, double>> MathematicalOperations { get; } =
+        new Dictionary<char, Func<int, int, double>>()
         {
             ['+'] = Add,
             ['-'] = Subtract,
@@ -14,14 +14,13 @@ public class Calculator
             ['/'] = Divide
         };
 
-    public static int Add(int parameter1, int parameter2) => parameter1 + parameter2;
-    public static int Subtract(int parameter1, int parameter2) => parameter1 - parameter2;
-    public static int Multiple(int parameter1, int parameter2) => parameter1 * parameter2;
-    public static int Divide(int parameter1, int parameter2) => parameter1 / parameter2;
+    public static double Add(int parameter1, int parameter2) => (double)parameter1 + parameter2;
+    public static double Subtract(int parameter1, int parameter2) => (double)parameter1 - parameter2;
+    public static double Multiple(int parameter1, int parameter2) => (double)parameter1 * parameter2;
+    public static double Divide(int parameter1, int parameter2) => (double)parameter1 / parameter2;
 
-    public bool TryCalculate(string calculation, out int result)
+    public bool TryCalculate(string calculation, out double result)
     {
-        // Can still be refactored
         result = default;
         string[] calculationArray = calculation.Split(" ");
 
@@ -32,13 +31,7 @@ public class Calculator
             int.TryParse(calculationArray[2], out int b))
         {
             if (!MathematicalOperations.ContainsKey(key)) return false;
-            try
-            {
-                result = MathematicalOperations[key](a, b);
-            } catch (DivideByZeroException)
-            {
-                return false;
-            }
+            result = MathematicalOperations[key](a, b);
             return true;
         }
 

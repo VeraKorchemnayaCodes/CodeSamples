@@ -20,9 +20,9 @@ public class Program
     {
         Calculator calc = new();
         Program prog = new();
-        bool running = true;
-        prog.WriteLine("Calculator at your service! [<int> <operator> <int>] format only!\nEnter \"quit\" to exit the program.");
-        while (running)
+        bool isRunning = true;
+        prog.WriteLine("Calculator at your service! (<int> <operator> <int>) format only!\nEnter \"quit\" to exit the program.");
+        while (isRunning)
         {
             prog.WriteLine("Enter expression:");
             string? input = prog.ReadLine();
@@ -33,10 +33,10 @@ public class Program
                     break;
                 case "quit":
                     prog.WriteLine("Quiting.");
-                    running = false;
+                    isRunning = false;
                     break;
                 default:
-                    if (calc.TryCalculate(input, out int result))
+                    if (calc.TryCalculate(input, out double result))
                     {
                         prog.WriteLine($"= {result}");
                     }

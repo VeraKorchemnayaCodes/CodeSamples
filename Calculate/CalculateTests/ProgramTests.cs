@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Linq;
+﻿using System.Linq;
 
 namespace CalculateTests;
 
@@ -7,11 +6,11 @@ namespace CalculateTests;
 public class ProgramTests
 {
     [TestMethod]
-    public void WriteLine_AcceptsDelegate_Success()
+    public void WriteLine_AcceptsCustomDelegate_Success()
     {
         // Arrange
         TestConsole testConsole = new();
-        Program prog = new(testConsole.WriteLine, TestConsole.ReadLine);
+        Program prog = new(testConsole.WriteLine, testConsole.ReadLine);
         string message = "0 / 0";
 
         // Act
@@ -22,31 +21,17 @@ public class ProgramTests
     }
 
     [TestMethod]
-    public void ReadLine_AcceptsDelegate_Success()
+    public void ReadLine_AcceptsCustomDelegate_Success()
     {
         // Arrange
         TestConsole testConsole = new();
-        Program prog = new(testConsole.WriteLine, TestConsole.ReadLine);
+        Program prog = new(testConsole.WriteLine, testConsole.ReadLine);
 
         // Act
-        string message = prog.ReadLine()!;
+        string? message = prog.ReadLine();
 
         // Assert
-        Assert.AreEqual<string>(message, "Custom ReadLine");
-    }
-}
-
-public class TestConsole
-{
-    public List<string> Buffer { get; } = new List<string>();
-
-    public void WriteLine(string message)
-    {
-        Buffer.Add(message);
-    }
-
-    public static string ReadLine()
-    {
-        return "Custom ReadLine";
+        Assert.IsFalse(string.IsNullOrEmpty(message));
+        Assert.AreEqual<string>(message, testConsole.ReadLineResult);
     }
 }
