@@ -4,7 +4,7 @@ namespace CanHazFunny;
 
 class Program
 {
-    static void Main(string[] args)
+    static void Main()
     {
         Jester jester = new(new JokeOutput(), new JokeService());
         do

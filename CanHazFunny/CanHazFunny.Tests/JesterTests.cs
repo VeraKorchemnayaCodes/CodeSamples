@@ -32,7 +32,7 @@ public class JesterTests
     [TestMethod]
     public void Constructor_GivenIJokeOutputAndIJokeService_Success()
     {
-        new Jester(MockJokeOutput.Object, MockJokeService.Object);
+        _ = new Jester(MockJokeOutput.Object, MockJokeService.Object);
     }
 
 
@@ -82,7 +82,7 @@ public class JesterTests
     public void TellJoke_GivenChuckNorrisJoke_FiltersJoke()
     {
         // Arrange
-        Jester jester = new Jester(MockJokeOutput.Object, MockJokeService.Object);
+        Jester jester = new(MockJokeOutput.Object, MockJokeService.Object);
         MockJokeService.SetupSequence(x => x.GetJoke())
             .Returns("Chuck Norris once shot down a German fighter plane with his finger. By yelling 'Bang!")
             .Returns("3 Database SQL walked into a NoSQL bar. A little while later they walked out, because they couldn't find a table.");
@@ -99,16 +99,16 @@ public class JesterTests
     public void TellJoke_FiltersChuckNorrisJokes_CaseInsensitive()
     {
         // Arrange
-        Jester jester = new Jester(MockJokeOutput.Object, MockJokeService.Object);
+        Jester jester = new(MockJokeOutput.Object, MockJokeService.Object);
         MockJokeService.SetupSequence(x => x.GetJoke())
-            .Returns("All browsers support the hex definitions #chuCK and #nORris for the colors black and blue.")
+            .Returns("All browsers support the hex definitions #chuCK and #Norris for the colors black and blue.")
             .Returns("3 Database SQL walked into a NoSQL bar. A little while later they walked out, because they couldn't find a table.");
 
         // Act
         jester.TellJoke();
 
         // Assert
-        MockJokeOutput.Verify(x => x.WriteJoke("All browsers support the hex definitions #chuCK and #nORris for the colors black and blue."), Times.Never);
+        MockJokeOutput.Verify(x => x.WriteJoke("All browsers support the hex definitions #chuCK and #Norris for the colors black and blue."), Times.Never);
         MockJokeOutput.Verify(x => x.WriteJoke("3 Database SQL walked into a NoSQL bar. A little while later they walked out, because they couldn't find a table."), Times.Once);
     }
 }
