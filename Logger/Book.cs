@@ -7,7 +7,7 @@ public record class Book(string Title, FullName Author, string ISBN) : BaseEntit
     public FullName Author { get; } = Author;
 
 
-    // Implemented implicitely because we don't want to hide this member from the users of the class
+    // Implemented implicitly because we don't want to hide this member from the users of the class
     public override string Name { get => $"{Title} by {Author} ({ISBN})"; }
 
     public virtual bool Equals(Book? other)

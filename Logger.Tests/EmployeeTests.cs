@@ -54,7 +54,7 @@ public class EmployeeTests
     }
 
     [TestMethod]
-    public void Salary_SetSalay_Success()
+    public void Salary_SetSalary_Success()
     {
         // Arrange
         uint salary = 2000;
