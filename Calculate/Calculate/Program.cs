@@ -1,21 +1,11 @@
-﻿using System;
+﻿using ConsoleUtilities;
+using System;
 
 namespace Calculate;
 
-public class Program
+public class Program : ProgramBase
 {
-
-    public Action<string> WriteLine { get; init; } = Console.WriteLine;
-    public Func<string?> ReadLine { get; init; } = Console.ReadLine;
-
-    public Program() { }
-
-    public Program(Action<string> writeLine, Func<string?> readLine)
-    {
-        WriteLine = writeLine;
-        ReadLine = readLine;
-    }
-
+    public Program() { } // following instructions
     static void Main()
     {
         Calculator calc = new();
@@ -28,7 +18,7 @@ public class Program
             string? input = prog.ReadLine();
             switch (input)
             {
-                case null:
+                case null or "":
                     prog.WriteLine("No expression found.");
                     break;
                 case "quit":

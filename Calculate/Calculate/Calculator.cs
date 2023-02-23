@@ -19,22 +19,16 @@ public class Calculator
     public static double Multiple(int parameter1, int parameter2) => (double)parameter1 * parameter2;
     public static double Divide(int parameter1, int parameter2) => (double)parameter1 / parameter2;
 
-    public bool TryCalculate(string calculation, out double result)
+    public bool TryCalculate(string expression, out double result)
     {
         result = default;
-        string[] calculationArray = calculation.Split(" ");
-
-        if (calculationArray.Length != 3 || calculationArray[1].Length != 1) return false;
-
-        if (int.TryParse(calculationArray[0], out int a) &&
-            char.TryParse(calculationArray[1], out char key) &&
-            int.TryParse(calculationArray[2], out int b))
+        if (expression.Split(" ") is string[] args and { Length: 3 } &&
+            int.TryParse(args[0], out int p1) && char.TryParse(args[1], out char op) && int.TryParse(args[2], out int p2))
         {
-            if (!MathematicalOperations.ContainsKey(key)) return false;
-            result = MathematicalOperations[key](a, b);
+            if (!MathematicalOperations.ContainsKey(op)) return false;
+            result = MathematicalOperations[op](p1, p2);
             return true;
         }
-
         return false;
     }
 }

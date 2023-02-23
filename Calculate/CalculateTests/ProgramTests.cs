@@ -10,7 +10,7 @@ public class ProgramTests
     {
         // Arrange
         TestConsole testConsole = new();
-        Program prog = new(testConsole.WriteLine, testConsole.ReadLine);
+        Program prog = new() { WriteLine = testConsole.WriteLine };
         string message = "0 / 0";
 
         // Act
@@ -25,7 +25,7 @@ public class ProgramTests
     {
         // Arrange
         TestConsole testConsole = new();
-        Program prog = new(testConsole.WriteLine, testConsole.ReadLine);
+        Program prog = new() { ReadLine = testConsole.ReadLine };
 
         // Act
         string? message = prog.ReadLine();

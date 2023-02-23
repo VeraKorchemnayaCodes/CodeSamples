@@ -32,6 +32,7 @@ namespace CalculateTests
         [DataRow("3 0 / 5", 0)]
         [DataRow("a / b", 0)]
         [DataRow("2 / /1", 0)]
+        [DataRow("2 + 2 + 2", 0)]
         public void TryCalculate_InvalidExpressions_Fail(string calculation, double expected)
         {
             // Arrange
