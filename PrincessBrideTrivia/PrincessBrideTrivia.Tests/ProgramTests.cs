@@ -33,8 +33,10 @@ namespace PrincessBrideTrivia.Tests
         public void DisplayResult_ReturnsTrueIfCorrect(string userGuess, bool expectedResult)
         {
             // Arrange
-            Question question = new Question();
-            question.CorrectAnswerIndex = "1";
+            Question question = new()
+            {
+                CorrectAnswerIndex = "1"
+            };
 
             // Act
             bool displayResult = Program.DisplayResult(userGuess, question);

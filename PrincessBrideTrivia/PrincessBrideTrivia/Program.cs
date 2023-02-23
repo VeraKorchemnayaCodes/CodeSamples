@@ -5,7 +5,7 @@ namespace PrincessBrideTrivia
 {
     public class Program
     {
-        public static void Main(string[] args)
+        public static void Main()
         {
             Question[] menu = LoadQuestions("Menu.txt");
             DisplayQuestion(menu[0]);
@@ -68,17 +68,13 @@ namespace PrincessBrideTrivia
 
         public static string GetFilePath(string choice)
         {
-            switch (choice)
+            return choice switch
             {
-                case "1":
-                    return "Easy.txt";
-                case "2":
-                    return "Medium.txt";
-                case "3":
-                    return "Hard.txt";
-                default:
-                    return "Medium.txt";
-            }
+                "1" => "Easy.txt",
+                "2" => "Medium.txt",
+                "3" => "Hard.txt",
+                _ => "Medium.txt",
+            };
         }
 
         public static Question[] LoadQuestions(string filePath)
@@ -97,9 +93,11 @@ namespace PrincessBrideTrivia
 
                 string correctAnswerIndex = lines[lineIndex + 4];
 
-                Question question = new Question();
-                question.Text = questionText;
-                question.Answers = new string[3];
+                Question question = new()
+                {
+                    Text = questionText,
+                    Answers = new string[3]
+                };
                 question.Answers[0] = answer1;
                 question.Answers[1] = answer2;
                 question.Answers[2] = answer3;
