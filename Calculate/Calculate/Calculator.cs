@@ -25,9 +25,11 @@ public class Calculator
         if (expression.Split(" ") is string[] args and { Length: 3 } &&
             int.TryParse(args[0], out int p1) && char.TryParse(args[1], out char op) && int.TryParse(args[2], out int p2))
         {
-            if (!MathematicalOperations.ContainsKey(op)) return false;
-            result = MathematicalOperations[op](p1, p2);
-            return true;
+            if (MathematicalOperations.ContainsKey(op)) 
+            {
+                result = MathematicalOperations[op](p1, p2);
+                return true;
+            }
         }
         return false;
     }

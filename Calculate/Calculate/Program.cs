@@ -6,6 +6,7 @@ namespace Calculate;
 public class Program : ProgramBase
 {
     public Program() { } // following instructions
+
     static void Main()
     {
         Calculator calc = new();
