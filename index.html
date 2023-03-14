@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Vera Korchemnaya's Perfolio</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+
+  <div class="scroll-container">
+
+    <header>
+      <p class="logo">Vera Korchemnaya</p>
+
+      <nav>
+        <ul class="nav-list">
+          <li>
+            <a class="about tab" href="#about">About</a>
+          </li>
+          <li>
+            <a class="project tab" href="#project">Projects</a>
+          </li>
+          <li>
+            <a class="resume tab" href="#resume">Resume</a>
+          </li>
+          <li>
+            <a id="toggleContactTab" class="contact tab" href="#contact">Contact</a>
+          </li>
+        </ul>
+      </nav>
+
+      <a class="contact btn-contact tab" href="#contact"><button>Contact</button></a>
+
+      <button class="toggle-nav">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </header>
+
+
+    <section class="about slide-background" id="about">
+      <div class="grid-container">
+        <div class="grid-item grid-item-photo">
+          <img src="images/about/portrait.jpg" alt="Picture of Me">
+        </div>
+        <div class="grid-item grid-item-1">
+          <h2><b>EDUCATION</b></h2>
+          <hr>
+          <h3><b>Eastern Washington University | GPA: 3.97</b></h3>
+          <h3><i>Bachelor of Computer Science</i></h3>
+          <ul>
+            <li><b>Favorite Courses:</b> .Net Web App Development, Data Structures, Computer Engineering, Databases
+            </li>
+            <li><b>Graduation:</b> December 2023</li>
+          </ul>
+        </div>
+
+        <div class="grid-item grid-item-2">
+          <h2><b>Experience</b></h2>
+          <hr>
+          <h3>Website Developer Intern</h3>
+          <ul>
+            <li><b>Automated Tasks:</b> Utilized Google Apps Script to improve efficiency and save trainers valuable
+              time</li>
+            <li><b>Updated Resources:</b> Improved site readability and updated outdated information, while preserving
+              existing theme</li>
+            <li><b>Built New Resources:</b> Created new pages and templates that have been integrated into the site</li>
+          </ul>
+        </div>
+
+        <div class="grid-item grid-item-3">
+          <h2><b>MY MISSION</b></h2>
+          <hr>
+          <p>My mission is to never stop learning new skills and developing myself in order to better serve others
+            and to transform the world through software.</p>
+        </div>
+      </div>
+    </section>
+
+
+    <section class="project slide-background section-1" id="project">
+      <div class="grid-container">
+        <div class="grid-item grid-item-1">
+          <h2><b>Group Project: Home Design Application (2022-Current)</b></h2>
+          <hr>
+          <ul>
+            <li>Collaborated with a team of 4 to build a 2D desktop application that allows home designers to easily
+              create floor plans and arrange furniture to meet their specific needs</li>
+            <li>Incorporated features such as custom item creation, multiple floor support, and workspace comparison, to
+              enhance the design process</li>
+            <li>Designed a seamless user experience, including drag and drop item functionality, saving progress and
+              switching
+              between editing and arranging modes</li>
+          </ul>
+        </div>
+
+        <div class="grid-item grid-item-sidebar">
+          <h2>SEE DEMO</h2>
+          <a href="https://youtu.be/UZ3QIay7S08" target="blank"><img src="images/projects/video.png"
+              alt="Youtube Link"></a>
+        </div>
+
+        <div class="grid-item grid-item-2">
+          <h2><b>Personal Website</b></h2>
+          <hr>
+          <ul>
+            <li>Developed a website from scratch using HTML5, CSS3, and JavaScript</li>
+            <li>Implemented responsive design with media queries to ensure optimal viewing experience across various
+              devices,
+              including creation of a mobile-friendly menu</li>
+            <li>Developed an understanding of DOM manipulation in JavaScript</li>
+            <li>Launched the website using AWS utilizing Route 53, S3, and a Linux EC2 instance</li>
+          </ul>
+        </div>
+
+        <div class="grid-item grid-item-sidebar">
+          <h2>SEE MY CODE</h2>
+          <a href="https://github.com/VeraKorchemnayaCodes/CodeSamples" target="blank"><img
+              src="images/projects/new-tab.png" alt="GitHub Link"></a>
+        </div>
+      </div>
+    </section>
+
+    <section class="resume slide-background" id="resume">
+      <article class="frame-container">
+        <iframe src="resources/resume.pdf" frameborder="0"></iframe>
+      </article>
+    </section>
+
+
+    <section class="contact slide-background" id="contact">
+      <div class="email-container">
+        <h1>Email me at:</h1>
+        <h2>vkorchemnaya@ewu.edu</h2>
+      </div>
+
+      <footer>
+        <ul>
+          <a class="icon" href="https://app.joinhandshake.com/users/17597183" target="blank">
+            <img src="images/footer/handshake.png" alt="Handshake">
+          </a>
+          <a class="link" href="https://app.joinhandshake.com/users/17597183" target="blank">
+            <li>Handshake</li>
+          </a>
+
+          <a class="icon" href="mailto:vkorchemnaya@ewu.edu">
+            <img src="images/footer/mail.png" alt="Email">
+          </a>
+          <a class="link" href="mailto:vkorchemnaya@ewu.edu">
+            <li>vkorchemnaya@ewu.edu</li>
+          </a>
+
+          <a class="icon" href="https://www.linkedin.com/in/vera-korchemnaya/" target="blank">
+            <img src="images/footer/linkedIn.png" alt="LinkedIn">
+          </a>
+          <a class="link" href="https://www.linkedin.com/in/vera-korchemnaya/" target="blank">
+            <li>LinkedIn</li>
+          </a>
+        </ul>
+      </footer>
+    </section>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+
+</html>

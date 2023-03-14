@@ -1,0 +1,400 @@
+/* Custom font only for logo */
+@font-face {
+  font-family: Keroximport;
+  src: url(Kerox.otf);
+}
+
+:root {
+  --header-height: 11vh;
+  --header-background: rgb(34, 34, 34);
+  --header-text-color: rgb(217, 217, 217);
+  --header-text-hover: rgb(135, 135, 135);
+  --clr-primary-hover: rgb(60, 60, 60);
+  --clr-pop: rgb(212, 111, 9);
+  --clr-pop-hover: rgba(212, 111, 9, 0.8);
+  --clr-secondary: rgb(50, 50, 50);
+  --off-white: rgb(186, 186, 186);
+  --bold-white: rgb(230, 230, 230);
+  --slide-height: calc(100vh - var(--header-height));
+}
+
+* {
+  font-family: sans-serif;
+  letter-spacing: 1px;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-size: 1.1vw;
+  color: var(--off-white);
+  line-height: 1.5;
+}
+
+b {
+  color: var(--bold-white);
+}
+
+/* 
+For Snap Scrolling
+
+*/
+
+.scroll-container {
+  height: 100vh;
+  width: 100vw;
+  overflow-x: hidden;
+  scroll-snap-type: block mandatory;
+  scroll-padding: var(--header-height);
+}
+
+section {
+  scroll-snap-align: start;
+  height: var(--slide-height);
+}
+
+/* 
+Sticky Nav Bar
+
+
+
+*/
+header {
+  background-color: var(--header-background);
+  height: 11vh;
+  padding: 0 3vw;
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
+}
+
+.logo {
+  font-weight: 700;
+  font-size: 25px;
+  font-family: Keroximport;
+  color: var(--header-text-color);
+  cursor: default;
+  transition: text-shadow 300ms ease-in;
+}
+
+.logo:hover {
+  cursor: default;
+  text-shadow: 0 0 0.2rem var(--header-text-hover);
+}
+
+header a,
+header button {
+  font-weight: 400;
+  font-size: 1.3vw;
+  color: var(--header-text-color);
+  text-decoration: none;
+}
+
+.nav-list {
+  list-style: none;
+}
+
+.nav-list li {
+  display: inline-block;
+}
+
+.nav-list li a {
+  padding: 9px 25px;
+  margin: 0.75rem;
+  border-radius: 1rem;
+  transition: background 300ms ease-in;
+}
+
+/* active classes for scrolling/hover effect */
+.nav-list li a:hover,
+.nav-list .active {
+  background: var(--clr-primary-hover);
+}
+
+.btn-contact button {
+  padding: 9px 25px;
+  background-color: transparent;
+  color: var(--clr-pop);
+  border: 3px solid var(--clr-pop);
+  border-radius: 1rem;
+  cursor: pointer;
+  transition: all 200ms ease-in;
+}
+
+.btn-contact button:hover,
+header .contact.active button {
+  box-shadow: 0 0 5px var(--clr-pop-hover);
+}
+
+/*  For responsive design   */
+
+.nav-list #toggleContactTab {
+  display: none;
+}
+
+.toggle-nav {
+  display: none;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 30px;
+  height: 21px;
+  cursor: pointer;
+  background-color: transparent;
+  border: none;
+}
+
+.toggle-nav span {
+  display: block;
+  width: 100%;
+  height: 3px;
+  background-color: var(--off-white);
+  border-radius: 3px;
+}
+
+/* 
+Slides 
+
+
+
+
+
+*/
+
+/* Background for all slides */
+.slide-background {
+  background-color: var(--clr-secondary);
+}
+
+/* 
+About Slide
+
+
+
+
+*/
+
+.about .grid-container {
+  display: grid;
+  height: var(--slide-height);
+  top: var(--header-height);
+  grid-template-columns: 25% 50%;
+  row-gap: 2%;
+  column-gap: 5%;
+  justify-content: center;
+  align-content: center;
+}
+
+.about .grid-item-photo {
+  grid-row: span 3;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  height: 75vh;
+}
+
+.about .grid-item-photo img {
+  width: 25vw;
+}
+
+.about hr,
+.project hr {
+  height: 3px;
+  margin: 2px;
+  background-color: grey;
+  border: none;
+}
+
+.about ul,
+.project ul {
+  padding-left: 20px;
+}
+
+/* 
+Project Slide
+
+
+
+
+*/
+
+.project .grid-container {
+  display: grid;
+  height: var(--slide-height);
+  grid-template-columns: 50% 10%;
+  grid-row-gap: 5%;
+  grid-column-gap: 5%;
+  justify-content: center;
+  align-content: center;
+}
+
+.project .grid-item-sidebar {
+  text-align: center;
+  align-self: center;
+  justify-self: center;
+}
+
+.project img {
+  width: 70%;
+  transition: all 300ms ease-in;
+}
+
+.project img:hover {
+  -webkit-filter: drop-shadow(5px 5px 5px #222);
+  filter: drop-shadow(5px 5px 5px #222);
+  cursor: pointer;
+}
+
+/* 
+Resume slide 
+
+
+
+
+*/
+
+.frame-container {
+  height: var(--slide-height);
+}
+
+iframe {
+  background-color: rgb(61, 61, 61);
+  border: 20px var(--clr-secondary) solid;
+  width: 100%;
+  height: 100%;
+}
+
+/* 
+Contact Slide
+
+
+
+
+*/
+
+.contact .email-container {
+  height: calc(var(--slide-height) - var(--header-height));
+  text-align: center;
+  display: grid;
+  justify-content: center;
+  align-content: center;
+}
+
+.contact h1 {
+  font-family: Keroximport;
+  line-height: 3rem;
+}
+
+/* 
+Contact Slide Footer
+
+
+*/
+
+footer {
+  background-color: var(--header-background);
+  height: var(--header-height);
+  padding: 0 3vw;
+  display: grid;
+  justify-content: center;
+  align-content: center;
+  color: var(--header-text-color);
+}
+
+footer img {
+  height: 7vh;
+}
+
+footer ul {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+footer li {
+  display: inline-block;
+  padding: 10px;
+}
+
+footer a {
+  font-weight: 400;
+  font-size: 16px;
+  color: var(--header-text-color);
+}
+
+/* Responsive Design */
+
+@media (max-width: 767px) {
+  body {
+    font-size: 2vw;
+  }
+
+  /* For footer icons */
+  nav,
+  .btn-contact,
+  .link {
+    display: none;
+  }
+
+  .icon {
+    padding: 0 2vw;
+  }
+
+  /* Change about page layout */
+  .about .grid-container {
+    grid-template-columns: 80%;
+    row-gap: 3vh;
+    column-gap: 0;
+  }
+
+  .about .grid-item-photo {
+    grid-row: inherit;
+    height: auto;
+  }
+}
+
+@media (max-width: 767px) {
+  .toggle-nav {
+    display: flex;
+  }
+
+  nav {
+    display: none;
+    position: absolute;
+    top: var(--header-height);
+    left: 0;
+    width: 100%;
+  }
+
+  nav.active {
+    display: block;
+    background-color: var(--header-background);
+  }
+
+  nav li {
+    text-align: center;
+  }
+
+  nav a {
+    font-size: 2vw;
+  }
+
+  .nav-list {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .nav-list li a {
+    padding: 9px 18px;
+    margin: 0.7rem;
+  }
+
+  #toggleContactTab.on {
+    display: flex;
+  }
+}
